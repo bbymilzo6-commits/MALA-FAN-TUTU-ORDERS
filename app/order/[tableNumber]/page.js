@@ -165,8 +165,7 @@ export default function OrderPage({ params }) {
         .from('sessions')
         .update({ status: 'closed' })
         .eq('id', session.id)
-        .eq('status', 'open')
-        .select('id');
+        .eq('status', 'open');
       if (updateError) throw updateError;
 
       setBillOpen(false);
