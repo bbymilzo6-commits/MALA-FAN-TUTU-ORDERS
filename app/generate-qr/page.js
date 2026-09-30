@@ -91,7 +91,23 @@ export default function GenerateQrPage() {
           status: 'open',
         });
 
-      if (insertError) throw insertError;
+      if (insertError) {
+        // 23505 = มีคนเปิดโต๊ะนี้ไปพร้อมกัน (unique index) -> แสดงกล่องเตือนตามปกติ
+        if (insertError.code === '23505') {
+          const { data: again } = await supabase
+            .from('sessions')
+            .select('id, adult_count, child_count, created_at')
+            .eq('table_number', tableNo)
+            .eq('status', 'open')
+            .order('created_at', { ascending: false })
+            .limit(1);
+          if (again && again.length > 0) {
+            setExisting(again[0]);
+            return;
+          }
+        }
+        throw insertError;
+      }
 
       setResult({
         table: tableNo,
@@ -122,8 +138,8 @@ export default function GenerateQrPage() {
         .from('sessions')
         .update({ status: 'closed' })
         .eq('id', existing.id)
-        .eq('status', 'open')
-        .select('id');
+        .eq('status', 'open');
+      // ไม่ใช้ .select() ต่อท้าย เพราะ RLS ของลูกค้า (anon) อ่านแถวที่ปิดแล้วไม่ได้
 
       if (updateError) throw updateError;
 
