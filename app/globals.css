@@ -1,152 +1,112 @@
-/* ========== Design tokens (เปลี่ยนสีทั้งเว็บได้ที่นี่) ========== */
+/* ============ Design tokens (เปลี่ยนโทนทั้งเว็บที่นี่) ============ */
 :root {
-  --bg: #140a08;
-  --surface: #2a1512;
-  --line: #4d2a22;
-  --fg: #fbeedd;
-  --muted: #cdb3a2;
-  --chili: #e5281b;
-  --chili-dark: #b71c12;
-  --ember: #ff7a1a;
-  --gold: #f5b942;
-  --radius: 18px;
+  --bg: #fbf8f3;
+  --paper: #ffffff;
+  --ink: #1d1511;
+  --muted: #7a6d64;
+  --line: #e8dfd4;
+  --red: #c8241b;
+  --red-dark: #a51a13;
+  --red-soft: #fdeceb;
+  --orange: #e8590c;
+  --orange-dark: #b84a06;
+  --orange-soft: #fff1e6;
+  --shadow: 0 1px 2px rgba(29, 21, 17, 0.04), 0 14px 36px rgba(29, 21, 17, 0.08);
 }
 
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
-
 body {
   min-height: 100vh;
-  color: var(--fg);
-  font-family: var(--font-prompt), 'Noto Sans Thai', 'Sarabun', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  font-family: var(--font-sans), 'IBM Plex Sans Thai', 'Noto Sans Thai', system-ui, -apple-system, sans-serif;
   line-height: 1.6;
-  background:
-    radial-gradient(900px 520px at 50% -8%, rgba(229, 40, 27, 0.3), transparent 62%),
-    radial-gradient(700px 420px at 105% 110%, rgba(255, 122, 26, 0.14), transparent 60%),
-    var(--bg);
-  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
 }
+h1, h2 { font-family: var(--font-serif), 'Noto Serif Thai', Georgia, serif; font-weight: 600; letter-spacing: 0.005em; }
 
-/* ประกายไฟลอยขึ้นเบา ๆ ด้านหลัง (หน้าครัวหยุดขยับเพื่อประหยัดเครื่อง) */
-body::before {
-  content: '';
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: calc(100% + 420px);
-  z-index: -1;
-  pointer-events: none;
-  background-size: 320px 420px;
-  background-image:
-    radial-gradient(2px 2px at 12% 88%, rgba(255, 170, 70, 0.75), transparent),
-    radial-gradient(3px 3px at 34% 62%, rgba(255, 120, 30, 0.6), transparent),
-    radial-gradient(2px 2px at 58% 94%, rgba(255, 200, 100, 0.7), transparent),
-    radial-gradient(3px 3px at 76% 48%, rgba(255, 110, 30, 0.55), transparent),
-    radial-gradient(2px 2px at 90% 76%, rgba(255, 170, 70, 0.7), transparent),
-    radial-gradient(2px 2px at 46% 28%, rgba(255, 140, 40, 0.5), transparent);
-  animation: embers 26s linear infinite;
-}
-body:has(.kt)::before { animation: none; opacity: 0.35; }
+button:focus-visible, a:focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; }
 
-@keyframes embers { to { transform: translateY(-420px); } }
-@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
 @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
-@keyframes pop { from { opacity: 0; transform: scale(0.92) translateY(8px); } to { opacity: 1; transform: none; } }
-@keyframes flicker { 0%, 100% { transform: scale(1) rotate(-3deg); } 50% { transform: scale(1.1) rotate(3deg); } }
-@keyframes ring { to { box-shadow: 0 0 0 18px rgba(229, 40, 27, 0); } }
+@keyframes pop { from { opacity: 0; transform: scale(0.96) translateY(6px); } to { opacity: 1; transform: none; } }
 
-button:focus-visible, a:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
-
-/* ========== หัวข้อตัวไล่สีทอง-ส้ม ========== */
-.home h1, .gq-title, .lg-title, .kt-title {
-  background: linear-gradient(180deg, #fff3da 0%, var(--gold) 58%, var(--ember) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  filter: drop-shadow(0 3px 14px rgba(229, 40, 27, 0.45));
-}
-
-/* ========== ปุ่มหลัก ========== */
+/* ============ ปุ่ม ============ */
 :is(.btn, .gq-btn, .od-btn, .lg-btn) {
-  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
   font-family: inherit;
-  font-weight: 800;
+  font-weight: 600;
+  letter-spacing: 0.01em;
   color: #fff;
   text-decoration: none;
   cursor: pointer;
   border: 0;
-  border-radius: 14px;
-  background: linear-gradient(135deg, var(--ember) 0%, var(--chili) 55%, var(--chili-dark) 100%);
-  box-shadow: 0 6px 20px rgba(229, 40, 27, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  border-radius: 999px;
+  background: var(--red);
+  box-shadow: 0 6px 16px rgba(200, 36, 27, 0.22);
+  transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
 }
 :is(.btn, .gq-btn, .od-btn, .lg-btn):hover:not(:disabled) {
-  transform: translateY(-2px);
-  filter: brightness(1.1);
-  box-shadow: 0 10px 26px rgba(229, 40, 27, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  background: var(--red-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(200, 36, 27, 0.28);
 }
-:is(.btn, .gq-btn, .od-btn, .lg-btn):active:not(:disabled) { transform: scale(0.97); }
-:is(.btn, .gq-btn, .od-btn, .lg-btn):disabled { opacity: 0.55; cursor: not-allowed; filter: grayscale(0.3); }
+:is(.btn, .gq-btn, .od-btn, .lg-btn):active:not(:disabled) { transform: scale(0.98); }
+:is(.btn, .gq-btn, .od-btn, .lg-btn):disabled { opacity: 0.5; cursor: not-allowed; }
 
 :is(.btn.ghost, .gq-btn-ghost, .od-btn-outline) {
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--fg);
-  box-shadow: inset 0 0 0 2px rgba(251, 238, 221, 0.3);
+  background: transparent;
+  color: var(--ink);
+  box-shadow: inset 0 0 0 1.5px var(--ink);
 }
 :is(.btn.ghost, .gq-btn-ghost, .od-btn-outline):hover:not(:disabled) {
-  background: rgba(255, 255, 255, 0.12);
-  filter: none;
-  box-shadow: inset 0 0 0 2px rgba(251, 238, 221, 0.55);
+  background: rgba(29, 21, 17, 0.06);
+  box-shadow: inset 0 0 0 1.5px var(--ink);
 }
+.gq-btn-warn { background: var(--orange); box-shadow: 0 6px 16px rgba(232, 89, 12, 0.25); }
+.gq-btn-warn:hover:not(:disabled) { background: var(--orange-dark); box-shadow: 0 10px 22px rgba(232, 89, 12, 0.3); }
 
-.gq-btn-warn {
-  background: linear-gradient(135deg, #ffd166, #f59e0b);
-  color: #1a0f0d;
-  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.5);
-}
-.gq-btn-warn:hover:not(:disabled) { box-shadow: 0 10px 26px rgba(245, 158, 11, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.5); }
+.btn { padding: 0.9rem 2rem; font-size: 1.05rem; }
 
-.btn { padding: 0.95rem 1.9rem; font-size: 1.15rem; border-radius: 999px; }
-.btn.pulse::after {
+/* ============ หัวข้อ (serif + เส้นแดง-ส้มใต้ชื่อ) ============ */
+.gq-title, .lg-title { margin: 0; font-size: 2.2rem; line-height: 1.2; }
+.gq-title::after, .lg-title::after {
   content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-  box-shadow: 0 0 0 0 rgba(229, 40, 27, 0.6);
-  animation: ring 2.2s ease-out infinite;
+  display: block;
+  width: 44px;
+  height: 3px;
+  margin-top: 0.7rem;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--red), var(--orange));
 }
 
-/* ========== การ์ด / ฟอร์ม / กล่องโต้ตอบ ========== */
+/* ============ การ์ด / ฟอร์ม / กล่องโต้ตอบ ============ */
 .gq-card, .lg-card {
-  background: linear-gradient(180deg, rgba(62, 32, 25, 0.92), rgba(38, 19, 15, 0.94));
-  border: 1px solid rgba(245, 185, 66, 0.2);
-  border-radius: var(--radius);
-  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.06);
-  animation: rise 0.5s ease both;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  animation: rise 0.45s ease both;
 }
-
+.gq-field, .lg-field { display: flex; flex-direction: column; gap: 0.4rem; font-weight: 600; }
 .gq-field input, .lg-field input {
   width: 100%;
   font-family: inherit;
-  color: #1a0f0d;
-  background: #fff7ea;
-  border: 2px solid transparent;
+  color: var(--ink);
+  background: #fff;
+  border: 1.5px solid #d9cdbf;
   border-radius: 14px;
-  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.15);
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 .gq-field input:focus, .lg-field input:focus {
   outline: none;
-  border-color: var(--gold);
-  box-shadow: 0 0 0 4px rgba(245, 185, 66, 0.3);
+  border-color: var(--red);
+  box-shadow: 0 0 0 4px rgba(200, 36, 27, 0.12);
 }
-
 .gq-overlay, .od-overlay {
   position: fixed;
   inset: 0;
@@ -155,93 +115,218 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--gold); outline-
   align-items: center;
   justify-content: center;
   padding: 1rem;
-  background: rgba(10, 4, 3, 0.78);
-  backdrop-filter: blur(5px);
+  background: rgba(29, 21, 17, 0.45);
+  backdrop-filter: blur(4px);
   animation: fade 0.2s ease both;
 }
 .gq-dialog, .od-dialog {
-  background: linear-gradient(180deg, #3e2019, #261310);
-  border-radius: 20px;
-  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.6);
-  animation: pop 0.25s cubic-bezier(0.2, 1.2, 0.4, 1) both;
+  width: 100%;
+  padding: 1.6rem;
+  background: var(--paper);
+  border-radius: 24px;
+  box-shadow: 0 30px 80px rgba(29, 21, 17, 0.3);
+  animation: pop 0.25s ease both;
 }
+.gq-dialog h2, .od-dialog h2 { margin: 0 0 0.75rem; font-size: 1.6rem; }
 
-/* ========== หน้าแรก / เมนูพนักงาน ========== */
-.home {
-  min-height: 100vh;
+/* ============ หน้าแรก ============ */
+.home .home-eyebrow { font-size: 0.85rem; font-weight: 600; letter-spacing: 0.32em; color: var(--red); }
+.home-rule { width: 56px; height: 3px; border-radius: 2px; background: linear-gradient(90deg, var(--red), var(--orange)); }
+.home .home-tag { font-size: 1.1rem; letter-spacing: 0.02em; }
+.home-staff { margin-top: 2.5rem; color: var(--muted); font-size: 0.9rem; text-decoration: none; }
+.home-staff:hover { color: var(--ink); text-decoration: underline; }
+
+/* เมนูพนักงาน (/staff) */
+.home { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.1rem; padding: 2rem 1.25rem; text-align: center; }
+.home h1 { margin: 0; font-size: clamp(2rem, 7vw, 3.25rem); line-height: 1.2; }
+.home p { margin: 0; color: var(--muted); }
+.home nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; margin-top: 0.5rem; }
+
+/* ============ หน้าเปิดโต๊ะ (/generate-qr) ============ */
+.gq { max-width: 520px; margin: 0 auto; padding: 2rem 1.25rem 3rem; font-size: 1.15rem; }
+.gq-title { margin-bottom: 1.5rem; }
+.gq-card { display: flex; flex-direction: column; gap: 1.15rem; padding: 1.5rem; }
+.gq-field input { padding: 0.8rem 1rem; font-size: 1.6rem; }
+.gq-btn { padding: 0.95rem 1.4rem; font-size: 1.25rem; }
+.gq-btn-wide { width: 100%; }
+.gq-btn-small { padding: 0.5rem 1rem; font-size: 0.95rem; white-space: nowrap; }
+
+.gq-warn {
   display: flex;
   flex-direction: column;
+  gap: 0.9rem;
+  margin-bottom: 1rem;
+  padding: 1.1rem 1.25rem;
+  background: var(--orange-soft);
+  border: 1.5px solid var(--orange);
+  border-radius: 20px;
+  animation: gq-shake 0.5s ease both;
+}
+.gq-warn-text { margin: 0; font-size: 1.25rem; font-weight: 600; color: #8a3a05; }
+@keyframes gq-shake { 10%, 90% { transform: translateX(-2px); } 30%, 70% { transform: translateX(4px); } 50% { transform: translateX(-4px); } }
+.gq-error { margin: 0 0 1rem; padding: 0.9rem 1.1rem; font-weight: 600; color: #8f1a14; background: var(--red-soft); border: 1.5px solid var(--red); border-radius: 14px; }
+
+.gq-result { align-items: center; text-align: center; }
+.gq-qr { max-width: 100%; height: auto; padding: 14px; background: #fff; border: 1px solid var(--line); border-radius: 20px; box-shadow: var(--shadow); animation: gq-pop 0.5s cubic-bezier(0.2, 1.2, 0.4, 1) both; }
+@keyframes gq-pop { from { opacity: 0; transform: scale(0.85); } to { opacity: 1; transform: none; } }
+.gq-summary { margin: 0; font-family: var(--font-serif), serif; font-size: 1.5rem; font-weight: 600; }
+.gq-linkrow { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0.6rem; }
+.gq-url { font-size: 1rem; word-break: break-all; color: var(--muted); }
+
+.gq-dialog { max-width: 460px; border-top: 4px solid var(--orange); }
+.gq-dialog-line { margin: 0.2rem 0; font-size: 1.3rem; font-weight: 600; }
+.gq-dialog-actions, .od-dialog-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.25rem; }
+.gq-dialog-actions .gq-btn { flex: 1 1 180px; }
+
+/* ============ เข้าสู่ระบบ / ตัวครอบหน้าพนักงาน ============ */
+.lg { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 1.5rem 1.25rem; }
+.lg-card { width: 100%; max-width: 420px; display: flex; flex-direction: column; gap: 1rem; padding: 1.75rem; }
+.lg-title { margin-bottom: 0.25rem; font-size: 1.9rem; }
+.lg-sub { margin: 0 0 0.25rem; color: var(--muted); }
+.lg-field { font-size: 1rem; }
+.lg-field input { padding: 0.8rem 1rem; font-size: 1.15rem; }
+.lg-btn { min-height: 54px; font-size: 1.15rem; }
+.lg-error { margin: 0; padding: 0.75rem 1rem; font-weight: 600; color: #8f1a14; background: var(--red-soft); border: 1.5px solid var(--red); border-radius: 12px; }
+
+.sg-wait { min-height: 100vh; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 1.15rem; }
+.sg-wait p { animation: fade 0.8s ease infinite alternate; }
+.sg-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1rem; padding: 1rem; color: var(--muted); font-size: 0.95rem; }
+.sg-bar button { padding: 0.45rem 1rem; font: inherit; font-weight: 600; color: var(--ink); background: transparent; border: 1.5px solid var(--line); border-radius: 999px; cursor: pointer; transition: background 0.2s ease; }
+.sg-bar button:hover { background: rgba(29, 21, 17, 0.06); }
+
+/* ============ หน้าสั่งอาหาร (/order/[tableNumber]) ============ */
+.od { max-width: 560px; margin: 0 auto; padding-bottom: 9.5rem; font-size: 1.1rem; }
+.od-full { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; padding: 2rem 1.5rem; text-align: center; }
+.od-full-text { margin: 0; font-family: var(--font-serif), serif; font-size: 2rem; font-weight: 600; line-height: 1.35; animation: rise 0.6s ease both; }
+.od-full-sub { margin: 0; color: var(--muted); animation: rise 0.6s 0.15s ease both; }
+
+.od-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  height: 72px;
+  display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 1.25rem;
-  padding: 2rem 1.25rem;
-  text-align: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0 1rem;
+  background: rgba(251, 248, 243, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
 }
-.home h1 {
-  margin: 0;
-  font-size: clamp(2.1rem, 8vw, 4.25rem);
-  font-weight: 800;
-  line-height: 1.15;
-  text-wrap: balance;
-}
-.home p { margin: 0; color: var(--muted); font-size: 1.1rem; }
-.home nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; margin-top: 0.5rem; }
-.home-flame {
-  font-size: clamp(3rem, 12vw, 5rem);
-  line-height: 1;
-  filter: drop-shadow(0 0 18px rgba(255, 120, 30, 0.85));
-  animation: flicker 1.6s ease-in-out infinite;
-}
-.home-staff { margin-top: 2rem; color: var(--muted); font-size: 0.9rem; opacity: 0.65; text-decoration: none; }
-.home-staff:hover { opacity: 1; text-decoration: underline; }
+.od-brand { font-size: 0.75rem; letter-spacing: 0.22em; font-weight: 600; color: var(--red); }
+.od-table { font-family: var(--font-serif), serif; font-size: 1.6rem; font-weight: 600; line-height: 1.1; }
 
-/* ========== หน้าแรกแบบมีแบนเนอร์ ========== */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
+.od-tabs {
+  position: sticky;
+  top: 72px;
+  z-index: 15;
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding: 0.7rem 1rem;
+  background: rgba(251, 248, 243, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+  scrollbar-width: none;
 }
-.hero-page { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-.hero { position: relative; width: 100%; }
-.hero-img {
-  display: block;
-  width: 100%;
-  height: auto;
-  -webkit-mask-image: linear-gradient(to bottom, #000 80%, transparent 100%);
-  mask-image: linear-gradient(to bottom, #000 80%, transparent 100%);
-}
-.hero-content { display: flex; flex-direction: column; align-items: center; gap: 1.1rem; padding: 0.25rem 1.25rem 0; text-align: center; }
-.hero-tag { margin: 0; color: var(--muted); font-size: 1.1rem; }
-.hero-page .home-staff { margin: 2.5rem 0 2rem; }
+.od-tabs::-webkit-scrollbar { display: none; }
+.od-tab { flex: 0 0 auto; min-height: 46px; padding: 0 1.2rem; font: inherit; font-weight: 500; color: var(--ink); background: #fff; border: 1.5px solid var(--line); border-radius: 999px; cursor: pointer; transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
+.od-tab:hover { border-color: var(--orange); }
+.od-tab.is-active { color: #fff; background: var(--red); border-color: var(--red); font-weight: 600; }
 
-/* จอกว้าง: วางข้อความและปุ่มทับช่องว่างตรงกลางรูป */
-@media (min-width: 900px) {
-  .hero-img {
-    -webkit-mask-image: linear-gradient(to bottom, #000 93%, transparent 100%);
-    mask-image: linear-gradient(to bottom, #000 93%, transparent 100%);
-  }
-  .hero-content {
-    position: absolute;
-    left: 50%;
-    top: 54%;
-    transform: translateX(-50%);
-    width: min(46%, 560px);
-    padding: 0;
-  }
-  .hero-tag { color: var(--fg); font-size: clamp(1rem, 1.6vw, 1.4rem); text-shadow: 0 2px 12px rgba(0, 0, 0, 0.85); }
-}
+.od-list { list-style: none; margin: 0; padding: 0.5rem 1rem; }
+.od-empty { padding: 2rem 0; text-align: center; color: var(--muted); }
+.od-item { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; margin: 0.6rem 0; padding: 0.85rem 1rem; background: #fff; border: 1px solid var(--line); border-radius: 18px; animation: rise 0.4s ease both; transition: transform 0.15s ease, border-color 0.2s ease; }
+.od-item:active { transform: scale(0.985); }
+.od-item:nth-child(2) { animation-delay: 0.04s; }
+.od-item:nth-child(3) { animation-delay: 0.08s; }
+.od-item:nth-child(4) { animation-delay: 0.12s; }
+.od-item:nth-child(5) { animation-delay: 0.16s; }
+.od-item:nth-child(6) { animation-delay: 0.2s; }
+.od-item:nth-child(7) { animation-delay: 0.24s; }
+.od-item:nth-child(8) { animation-delay: 0.28s; }
+.od-item-name { flex: 1; font-weight: 600; line-height: 1.35; }
 
-/* ========== เคารพคนที่ปิดแอนิเมชันในเครื่อง ========== */
+.od-round { flex: 0 0 auto; width: 50px; height: 50px; display: inline-flex; align-items: center; justify-content: center; font: inherit; font-size: 1.8rem; line-height: 1; font-weight: 500; color: #fff; background: var(--red); border: 0; border-radius: 50%; cursor: pointer; transition: transform 0.12s ease, background 0.2s ease; }
+.od-round:hover:not(:disabled) { background: var(--red-dark); }
+.od-round:active:not(:disabled) { transform: scale(0.88); }
+.od-round:disabled { background: #efe7dd; color: #b5a79b; cursor: not-allowed; }
+.od-round-sm { width: 42px; height: 42px; font-size: 1.5rem; }
+.od-stepper { display: flex; align-items: center; gap: 0.6rem; }
+.od-qty { min-width: 1.6rem; text-align: center; font-size: 1.35rem; font-weight: 700; color: var(--orange); }
+
+.od-btn { min-height: 46px; padding: 0 1.25rem; font-size: 1rem; }
+.od-send { min-height: 52px; padding: 0 1.7rem; font-size: 1.15rem; }
+
+.od-toast { position: fixed; left: 50%; bottom: 9.5rem; transform: translateX(-50%); z-index: 40; padding: 0.8rem 1.6rem; font-weight: 600; color: #fff; background: var(--ink); border-radius: 999px; box-shadow: 0 12px 30px rgba(29, 21, 17, 0.3); animation: od-toast 0.4s cubic-bezier(0.2, 1.2, 0.4, 1) both; }
+@keyframes od-toast { from { opacity: 0; transform: translate(-50%, 16px); } to { opacity: 1; transform: translate(-50%, 0); } }
+
+.od-cart { position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; max-width: 560px; margin: 0 auto; background: rgba(255, 255, 255, 0.94); backdrop-filter: blur(14px); border: 1px solid var(--line); border-bottom: 0; border-radius: 26px 26px 0 0; box-shadow: 0 -12px 40px rgba(29, 21, 17, 0.12); padding-bottom: env(safe-area-inset-bottom, 0px); }
+.od-cart-panel { max-height: 40vh; overflow-y: auto; padding: 0.25rem 1rem; animation: rise 0.25s ease both; }
+.od-cart-list { list-style: none; margin: 0; padding: 0; }
+.od-cart-line { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; padding: 0.6rem 0.25rem; border-bottom: 1px solid var(--line); }
+.od-cart-empty { margin: 0; padding: 1rem 0; color: var(--muted); text-align: center; }
+.od-cart-note { margin: 0; padding: 0.5rem 1rem 0; color: var(--orange-dark); font-weight: 600; font-size: 0.95rem; }
+.od-cart-error { margin: 0; padding: 0.5rem 1rem 0; color: var(--red); font-weight: 600; font-size: 0.95rem; }
+.od-cart-bar { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem; }
+.od-cart-toggle { flex: 1; display: flex; align-items: center; gap: 0.6rem; min-height: 52px; padding: 0 0.25rem; font: inherit; font-weight: 600; color: var(--ink); background: transparent; border: 0; cursor: pointer; text-align: left; }
+.od-cart-count { display: inline-flex; align-items: center; justify-content: center; min-width: 2.1rem; height: 2.1rem; padding: 0 0.45rem; font-weight: 700; color: #fff; background: var(--orange); border-radius: 999px; animation: od-bump 0.35s cubic-bezier(0.2, 1.6, 0.4, 1); }
+@keyframes od-bump { from { transform: scale(0.6); } to { transform: scale(1); } }
+
+.od-dialog { max-width: 440px; border-top: 4px solid var(--red); }
+.od-bill-line { margin: 0.25rem 0; color: var(--muted); }
+.od-bill-total { margin: 0.9rem 0 0; font-family: var(--font-serif), serif; font-size: 1.75rem; font-weight: 600; color: var(--red); }
+.od-bill-warn { margin: 0.75rem 0 0; color: var(--orange-dark); font-weight: 600; font-size: 0.95rem; }
+.od-dialog-actions .od-btn { flex: 1 1 140px; }
+
+/* ============ หน้าครัว (/kitchen) อ่านไกลได้ ============ */
+.kt { min-height: 100vh; padding: 1rem 1.25rem 2rem; font-size: 1.25rem; }
+.kt-header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.75rem 1.5rem; margin-bottom: 1rem; }
+.kt-title { margin: 0; font-size: 2.1rem; }
+.kt-stats { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; }
+.kt-stat { padding: 0.35rem 1.1rem; font-size: 1.45rem; font-weight: 700; color: var(--ink); background: #fff; border: 1.5px solid var(--line); border-radius: 999px; }
+.kt-stat-cooking { color: #8a3a05; background: var(--orange-soft); border-color: var(--orange); }
+.kt-conn { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 1rem; color: var(--muted); }
+.kt-dot { width: 0.8rem; height: 0.8rem; border-radius: 50%; background: #cfc3b6; }
+.kt-conn-live .kt-dot { background: #2f9e44; }
+.kt-conn-offline { color: var(--red); font-weight: 600; }
+.kt-conn-offline .kt-dot { background: var(--red); }
+
+.kt-banner { margin: 0 0 1rem; padding: 0.9rem 1.1rem; font-weight: 600; color: #8f1a14; background: var(--red-soft); border: 1.5px solid var(--red); border-radius: 14px; }
+.kt-empty { margin: 6rem 0; text-align: center; font-family: var(--font-serif), serif; font-size: 2.1rem; font-weight: 600; color: var(--muted); }
+
+.kt-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1rem; align-items: start; }
+.kt-card { display: flex; flex-direction: column; gap: 0.7rem; padding: 1.1rem 1.25rem; color: var(--ink); background: #fff; border: 1px solid var(--line); border-radius: 22px; box-shadow: var(--shadow); animation: kt-pop 0.5s cubic-bezier(0.2, 1.2, 0.4, 1) both; }
+.kt-card.is-received { border-left: 10px solid var(--red); }
+.kt-card.is-cooking { background: var(--orange-soft); border-color: var(--orange); border-left: 10px solid var(--orange); animation: kt-pop 0.5s cubic-bezier(0.2, 1.2, 0.4, 1) both, kt-glow 2.6s ease-in-out 0.6s infinite; }
+@keyframes kt-pop { 0% { opacity: 0; transform: scale(0.94) translateY(8px); box-shadow: 0 0 0 0 rgba(232, 89, 12, 0.5); } 60% { box-shadow: 0 0 0 14px rgba(232, 89, 12, 0); } 100% { opacity: 1; transform: none; } }
+@keyframes kt-glow { 0%, 100% { box-shadow: var(--shadow); } 50% { box-shadow: 0 0 0 4px rgba(232, 89, 12, 0.22), var(--shadow); } }
+
+.kt-card-top { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; }
+.kt-table { font-family: var(--font-serif), serif; font-size: 3.4rem; font-weight: 700; line-height: 1.05; }
+.kt-badge { padding: 0.3rem 0.95rem; font-size: 1.2rem; font-weight: 700; color: #fff; background: var(--red); border-radius: 999px; }
+.kt-card.is-cooking .kt-badge { background: var(--orange); }
+.kt-time { font-size: 1.1rem; font-weight: 500; color: var(--muted); }
+.kt-late { color: var(--red); font-weight: 700; }
+
+.kt-items { list-style: none; margin: 0.2rem 0; padding: 0; border-top: 1.5px solid var(--line); }
+.kt-card.is-cooking .kt-items { border-top-color: #f5c9a8; }
+.kt-item { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; padding: 0.5rem 0; font-size: 1.65rem; font-weight: 600; line-height: 1.3; border-bottom: 1px solid var(--line); }
+.kt-card.is-cooking .kt-item { border-bottom-color: #f5c9a8; }
+.kt-item-qty { flex: 0 0 auto; font-size: 1.85rem; font-weight: 700; color: var(--red); }
+
+.kt-actions { display: flex; gap: 0.6rem; margin-top: 0.3rem; }
+.kt-btn { flex: 1; min-height: 64px; padding: 0 0.75rem; font: inherit; font-size: 1.35rem; font-weight: 700; border: 2px solid var(--ink); border-radius: 16px; cursor: pointer; transition: transform 0.12s ease, background 0.2s ease; }
+.kt-btn:active:not(:disabled) { transform: scale(0.97); }
+.kt-btn:focus-visible { outline: 4px solid var(--orange); }
+.kt-btn-start { color: var(--ink); background: transparent; }
+.kt-btn-start:hover:not(:disabled) { background: rgba(29, 21, 17, 0.07); }
+.kt-btn-done { color: #fff; background: var(--ink); }
+.kt-btn-done:hover:not(:disabled) { background: #3a2a22; }
+.kt-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* ============ เคารพคนที่ปิดแอนิเมชันในเครื่อง ============ */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
-  }
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
 }
