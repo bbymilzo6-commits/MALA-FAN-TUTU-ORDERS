@@ -8,17 +8,6 @@ export default function HomePage() {
       <h1 className="sr-only">หม่าล่าฟันตุตุ / MALA FAN TUTU</h1>
 
       <div className="hero">
-        <div className="hero-frame">
-          <Image
-            className="hero-img"
-            src="/banner-home.jpg"
-            alt=""
-            width={1376}
-            height={768}
-            sizes="(max-width: 1100px) 100vw, 1100px"
-            priority
-          />
-        </div>
         <div className="hero-content">
           <p className="hero-tag">ระบบสั่งอาหารร้านบุฟเฟต์ — เดือด ตุ ดุ แล้ว</p>
           <Link className="btn" href="/generate-qr">สร้าง QR โต๊ะ</Link>
