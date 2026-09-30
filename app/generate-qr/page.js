@@ -320,111 +320,58 @@ export default function GenerateQrPage() {
 }
 
 const css = `
-.gq {
-  max-width: 520px;
-  margin: 0 auto;
-  padding: 1.5rem 1.25rem 3rem;
-  font-size: 1.25rem;
-}
-.gq-title {
-  margin: 0 0 1.25rem;
-  font-size: 2.25rem;
-  font-weight: 800;
-}
-.gq-card {
-  display: flex;
-  flex-direction: column;
-  gap: 1.1rem;
-  padding: 1.25rem;
-  border-radius: 16px;
-  background: #2a1a16;
-}
-.gq-field {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  font-weight: 700;
-}
-.gq-field input {
-  width: 100%;
-  padding: 0.8rem 1rem;
-  font-size: 1.75rem;
-  font-family: inherit;
-  border: 2px solid #5a4038;
-  border-radius: 12px;
-  background: #fff;
-  color: #1a0f0d;
-}
-.gq-field input:focus-visible {
-  outline: 3px solid var(--chili);
-  outline-offset: 2px;
-}
-.gq-btn {
-  padding: 0.9rem 1.4rem;
-  font-size: 1.35rem;
-  font-weight: 800;
-  font-family: inherit;
-  border: 2px solid var(--chili);
-  border-radius: 12px;
-  background: var(--chili);
-  color: #fff;
-  cursor: pointer;
-}
-.gq-btn:hover:not(:disabled) { background: var(--chili-dark); border-color: var(--chili-dark); }
-.gq-btn:focus-visible { outline: 3px solid var(--fg); outline-offset: 3px; }
-.gq-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.gq { max-width: 520px; margin: 0 auto; padding: 1.5rem 1.25rem 3rem; font-size: 1.25rem; }
+.gq-title { margin: 0 0 1.25rem; font-size: 2.4rem; font-weight: 800; }
+.gq-card { display: flex; flex-direction: column; gap: 1.1rem; padding: 1.35rem; }
+.gq-field { display: flex; flex-direction: column; gap: 0.35rem; font-weight: 700; }
+.gq-field input { padding: 0.8rem 1rem; font-size: 1.75rem; }
+.gq-btn { padding: 0.95rem 1.4rem; font-size: 1.35rem; }
 .gq-btn-wide { width: 100%; }
-.gq-btn-small { padding: 0.5rem 0.9rem; font-size: 1rem; white-space: nowrap; }
-.gq-btn-ghost { background: transparent; color: var(--fg); border-color: #8a6f64; }
-.gq-btn-ghost:hover:not(:disabled) { background: #3a2822; border-color: #8a6f64; }
-.gq-btn-warn { background: #f59e0b; border-color: #f59e0b; color: #1a0f0d; }
-.gq-btn-warn:hover:not(:disabled) { background: #d98a06; border-color: #d98a06; }
+.gq-btn-small { padding: 0.5rem 0.9rem; font-size: 1rem; white-space: nowrap; border-radius: 10px; }
 
 .gq-warn {
   margin-bottom: 1rem;
   padding: 1.1rem 1.25rem;
-  border: 3px solid #f59e0b;
+  border: 2px solid var(--gold);
   border-radius: 16px;
-  background: #4a2a06;
+  background: linear-gradient(180deg, rgba(122, 64, 8, 0.85), rgba(74, 42, 6, 0.9));
+  box-shadow: 0 0 30px rgba(245, 158, 11, 0.25);
   display: flex;
   flex-direction: column;
   gap: 0.9rem;
+  animation: gq-shake 0.5s ease both;
 }
 .gq-warn-text { margin: 0; font-size: 1.4rem; font-weight: 800; color: #ffd28a; }
-
+@keyframes gq-shake {
+  10%, 90% { transform: translateX(-2px); }
+  30%, 70% { transform: translateX(5px); }
+  50% { transform: translateX(-5px); }
+}
 .gq-error {
   margin: 0 0 1rem;
   padding: 0.9rem 1.1rem;
   border-radius: 12px;
-  background: #5b1410;
+  background: rgba(120, 20, 14, 0.7);
   border: 2px solid var(--chili);
   font-weight: 700;
 }
 
 .gq-result { align-items: center; text-align: center; }
-.gq-qr { max-width: 100%; height: auto; border-radius: 12px; background: #fff; padding: 8px; }
+.gq-qr {
+  max-width: 100%;
+  height: auto;
+  padding: 10px;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 0 0 4px var(--gold), 0 14px 40px rgba(0, 0, 0, 0.5), 0 0 34px rgba(229, 40, 27, 0.45);
+  animation: gq-pop 0.55s cubic-bezier(0.2, 1.3, 0.4, 1) both;
+}
+@keyframes gq-pop { from { opacity: 0; transform: scale(0.7) rotate(-4deg); } to { opacity: 1; transform: none; } }
 .gq-summary { margin: 0; font-size: 1.6rem; font-weight: 800; }
 .gq-linkrow { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0.6rem; }
 .gq-url { font-size: 1.1rem; word-break: break-all; color: var(--muted); }
 
-.gq-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 50;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  background: rgba(0, 0, 0, 0.75);
-}
-.gq-dialog {
-  width: 100%;
-  max-width: 460px;
-  padding: 1.5rem;
-  border: 4px solid #f59e0b;
-  border-radius: 18px;
-  background: #2a1a16;
-}
+.gq-dialog { width: 100%; max-width: 460px; padding: 1.5rem; border: 3px solid var(--gold); }
 .gq-dialog h2 { margin: 0 0 0.75rem; font-size: 1.7rem; color: #ffd28a; }
 .gq-dialog-line { margin: 0.2rem 0; font-size: 1.4rem; font-weight: 700; }
 .gq-dialog-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.25rem; }
