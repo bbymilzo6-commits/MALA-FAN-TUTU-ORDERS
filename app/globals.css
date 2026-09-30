@@ -195,6 +195,48 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--gold); outline-
 .home-staff { margin-top: 2rem; color: var(--muted); font-size: 0.9rem; opacity: 0.65; text-decoration: none; }
 .home-staff:hover { opacity: 1; text-decoration: underline; }
 
+/* ========== หน้าแรกแบบมีแบนเนอร์ ========== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.hero-page { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.hero { position: relative; width: 100%; }
+.hero-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  -webkit-mask-image: linear-gradient(to bottom, #000 80%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 80%, transparent 100%);
+}
+.hero-content { display: flex; flex-direction: column; align-items: center; gap: 1.1rem; padding: 0.25rem 1.25rem 0; text-align: center; }
+.hero-tag { margin: 0; color: var(--muted); font-size: 1.1rem; }
+.hero-page .home-staff { margin: 2.5rem 0 2rem; }
+
+/* จอกว้าง: วางข้อความและปุ่มทับช่องว่างตรงกลางรูป */
+@media (min-width: 900px) {
+  .hero-img {
+    -webkit-mask-image: linear-gradient(to bottom, #000 93%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 93%, transparent 100%);
+  }
+  .hero-content {
+    position: absolute;
+    left: 50%;
+    top: 54%;
+    transform: translateX(-50%);
+    width: min(46%, 560px);
+    padding: 0;
+  }
+  .hero-tag { color: var(--fg); font-size: clamp(1rem, 1.6vw, 1.4rem); text-shadow: 0 2px 12px rgba(0, 0, 0, 0.85); }
+}
+
 /* ========== เคารพคนที่ปิดแอนิเมชันในเครื่อง ========== */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
