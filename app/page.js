@@ -1,19 +1,205 @@
-import Link from 'next/link';
+/* ========== Design tokens (เปลี่ยนสีทั้งเว็บได้ที่นี่) ========== */
+:root {
+  --bg: #140a08;
+  --surface: #2a1512;
+  --line: #4d2a22;
+  --fg: #fbeedd;
+  --muted: #cdb3a2;
+  --chili: #e5281b;
+  --chili-dark: #b71c12;
+  --ember: #ff7a1a;
+  --gold: #f5b942;
+  --radius: 18px;
+}
 
-export default function HomePage() {
-  return (
-    <main className="home">
-      <h1>หม่าล่าฟันตุตุ / MALA FAN TUTU</h1>
-      <p>ระบบสั่งอาหารร้านบุฟเฟต์ — เดือด ตุ ดุ แล้ว</p>
-      <nav>
-        <Link className="btn" href="/generate-qr">สร้าง QR โต๊ะ</Link>
-      </nav>
-      <Link
-        href="/login"
-        style={{ marginTop: '2rem', color: 'var(--muted)', fontSize: '0.9rem', opacity: 0.7 }}
-      >
-        สำหรับพนักงาน
-      </Link>
-    </main>
-  );
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+
+body {
+  min-height: 100vh;
+  color: var(--fg);
+  font-family: var(--font-prompt), 'Noto Sans Thai', 'Sarabun', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  background:
+    radial-gradient(900px 520px at 50% -8%, rgba(229, 40, 27, 0.3), transparent 62%),
+    radial-gradient(700px 420px at 105% 110%, rgba(255, 122, 26, 0.14), transparent 60%),
+    var(--bg);
+  background-attachment: fixed;
+}
+
+/* ประกายไฟลอยขึ้นเบา ๆ ด้านหลัง (หน้าครัวหยุดขยับเพื่อประหยัดเครื่อง) */
+body::before {
+  content: '';
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: calc(100% + 420px);
+  z-index: -1;
+  pointer-events: none;
+  background-size: 320px 420px;
+  background-image:
+    radial-gradient(2px 2px at 12% 88%, rgba(255, 170, 70, 0.75), transparent),
+    radial-gradient(3px 3px at 34% 62%, rgba(255, 120, 30, 0.6), transparent),
+    radial-gradient(2px 2px at 58% 94%, rgba(255, 200, 100, 0.7), transparent),
+    radial-gradient(3px 3px at 76% 48%, rgba(255, 110, 30, 0.55), transparent),
+    radial-gradient(2px 2px at 90% 76%, rgba(255, 170, 70, 0.7), transparent),
+    radial-gradient(2px 2px at 46% 28%, rgba(255, 140, 40, 0.5), transparent);
+  animation: embers 26s linear infinite;
+}
+body:has(.kt)::before { animation: none; opacity: 0.35; }
+
+@keyframes embers { to { transform: translateY(-420px); } }
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes pop { from { opacity: 0; transform: scale(0.92) translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes flicker { 0%, 100% { transform: scale(1) rotate(-3deg); } 50% { transform: scale(1.1) rotate(3deg); } }
+@keyframes ring { to { box-shadow: 0 0 0 18px rgba(229, 40, 27, 0); } }
+
+button:focus-visible, a:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+
+/* ========== หัวข้อตัวไล่สีทอง-ส้ม ========== */
+.home h1, .gq-title, .lg-title, .kt-title {
+  background: linear-gradient(180deg, #fff3da 0%, var(--gold) 58%, var(--ember) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 3px 14px rgba(229, 40, 27, 0.45));
+}
+
+/* ========== ปุ่มหลัก ========== */
+:is(.btn, .gq-btn, .od-btn, .lg-btn) {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: inherit;
+  font-weight: 800;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  border: 0;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--ember) 0%, var(--chili) 55%, var(--chili-dark) 100%);
+  box-shadow: 0 6px 20px rgba(229, 40, 27, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+:is(.btn, .gq-btn, .od-btn, .lg-btn):hover:not(:disabled) {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+  box-shadow: 0 10px 26px rgba(229, 40, 27, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+:is(.btn, .gq-btn, .od-btn, .lg-btn):active:not(:disabled) { transform: scale(0.97); }
+:is(.btn, .gq-btn, .od-btn, .lg-btn):disabled { opacity: 0.55; cursor: not-allowed; filter: grayscale(0.3); }
+
+:is(.btn.ghost, .gq-btn-ghost, .od-btn-outline) {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--fg);
+  box-shadow: inset 0 0 0 2px rgba(251, 238, 221, 0.3);
+}
+:is(.btn.ghost, .gq-btn-ghost, .od-btn-outline):hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.12);
+  filter: none;
+  box-shadow: inset 0 0 0 2px rgba(251, 238, 221, 0.55);
+}
+
+.gq-btn-warn {
+  background: linear-gradient(135deg, #ffd166, #f59e0b);
+  color: #1a0f0d;
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+.gq-btn-warn:hover:not(:disabled) { box-shadow: 0 10px 26px rgba(245, 158, 11, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.5); }
+
+.btn { padding: 0.95rem 1.9rem; font-size: 1.15rem; border-radius: 999px; }
+.btn.pulse::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: 0 0 0 0 rgba(229, 40, 27, 0.6);
+  animation: ring 2.2s ease-out infinite;
+}
+
+/* ========== การ์ด / ฟอร์ม / กล่องโต้ตอบ ========== */
+.gq-card, .lg-card {
+  background: linear-gradient(180deg, rgba(62, 32, 25, 0.92), rgba(38, 19, 15, 0.94));
+  border: 1px solid rgba(245, 185, 66, 0.2);
+  border-radius: var(--radius);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  animation: rise 0.5s ease both;
+}
+
+.gq-field input, .lg-field input {
+  width: 100%;
+  font-family: inherit;
+  color: #1a0f0d;
+  background: #fff7ea;
+  border: 2px solid transparent;
+  border-radius: 14px;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.gq-field input:focus, .lg-field input:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 4px rgba(245, 185, 66, 0.3);
+}
+
+.gq-overlay, .od-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(10, 4, 3, 0.78);
+  backdrop-filter: blur(5px);
+  animation: fade 0.2s ease both;
+}
+.gq-dialog, .od-dialog {
+  background: linear-gradient(180deg, #3e2019, #261310);
+  border-radius: 20px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.6);
+  animation: pop 0.25s cubic-bezier(0.2, 1.2, 0.4, 1) both;
+}
+
+/* ========== หน้าแรก / เมนูพนักงาน ========== */
+.home {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  padding: 2rem 1.25rem;
+  text-align: center;
+}
+.home h1 {
+  margin: 0;
+  font-size: clamp(2.1rem, 8vw, 4.25rem);
+  font-weight: 800;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+.home p { margin: 0; color: var(--muted); font-size: 1.1rem; }
+.home nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; margin-top: 0.5rem; }
+.home-flame {
+  font-size: clamp(3rem, 12vw, 5rem);
+  line-height: 1;
+  filter: drop-shadow(0 0 18px rgba(255, 120, 30, 0.85));
+  animation: flicker 1.6s ease-in-out infinite;
+}
+.home-staff { margin-top: 2rem; color: var(--muted); font-size: 0.9rem; opacity: 0.65; text-decoration: none; }
+.home-staff:hover { opacity: 1; text-decoration: underline; }
+
+/* ========== เคารพคนที่ปิดแอนิเมชันในเครื่อง ========== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }
