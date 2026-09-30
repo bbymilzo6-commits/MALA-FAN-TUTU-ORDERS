@@ -1,18 +1,11 @@
 import './globals.css';
-import { IBM_Plex_Sans_Thai, Noto_Serif_Thai } from 'next/font/google';
+import { Prompt } from 'next/font/google';
 
-const sans = IBM_Plex_Sans_Thai({
+const prompt = Prompt({
   subsets: ['thai', 'latin'],
-  weight: ['300', '400', '500', '600', '700'],
+  weight: ['400', '500', '700', '800'],
   display: 'swap',
-  variable: '--font-sans',
-});
-
-const serif = Noto_Serif_Thai({
-  subsets: ['thai', 'latin'],
-  weight: ['500', '600', '700'],
-  display: 'swap',
-  variable: '--font-serif',
+  variable: '--font-prompt',
 });
 
 export const metadata = {
@@ -21,12 +14,12 @@ export const metadata = {
 };
 
 export const viewport = {
-  themeColor: '#fbf8f3',
+  themeColor: '#140a08',
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="th" className={`${sans.variable} ${serif.variable}`}>
+    <html lang="th" className={prompt.variable}>
       <body>{children}</body>
     </html>
   );
