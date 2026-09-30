@@ -73,11 +73,18 @@ export default function StaffGuard({ children }) {
 
 const css = `
 .sg-wait { min-height: 100vh; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 1.25rem; }
+.sg-wait p { animation: fade 0.8s ease infinite alternate; }
 .sg-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1rem; padding: 1rem; color: var(--muted); font-size: 1rem; }
 .sg-bar button {
-  padding: 0.5rem 1rem; font: inherit; font-weight: 700; color: var(--fg);
-  background: transparent; border: 2px solid #8a6f64; border-radius: 10px; cursor: pointer;
+  padding: 0.5rem 1rem;
+  font: inherit;
+  font-weight: 700;
+  color: var(--fg);
+  background: transparent;
+  border: 2px solid #8a6f64;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s ease;
 }
-.sg-bar button:hover { background: #3a2822; }
-.sg-bar button:focus-visible { outline: 3px solid var(--fg); outline-offset: 2px; }
+.sg-bar button:hover { background: rgba(255, 255, 255, 0.1); }
 `;
