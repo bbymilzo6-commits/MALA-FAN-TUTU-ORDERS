@@ -86,21 +86,18 @@ export default function LoginPage() {
 
 const css = `
 .lg { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 1.5rem 1.25rem; }
-.lg-card { width: 100%; max-width: 420px; display: flex; flex-direction: column; gap: 1rem; padding: 1.5rem; border-radius: 16px; background: #2a1a16; }
-.lg-title { margin: 0; font-size: 1.9rem; font-weight: 800; }
+.lg-card { width: 100%; max-width: 420px; display: flex; flex-direction: column; gap: 1rem; padding: 1.6rem; }
+.lg-title { margin: 0; font-size: 2rem; font-weight: 800; }
 .lg-sub { margin: -0.5rem 0 0.25rem; color: var(--muted); }
-.lg-field { display: flex; flex-direction: column; gap: 0.35rem; font-weight: 700; font-size: 1.15rem; }
-.lg-field input {
-  width: 100%; padding: 0.8rem 1rem; font: inherit; font-size: 1.25rem;
-  border: 2px solid #5a4038; border-radius: 12px; background: #fff; color: #1a0f0d;
+.lg-field { display: flex; flex-direction: column; gap: 0.35rem; font-weight: 700; font-size: 1.1rem; }
+.lg-field input { padding: 0.8rem 1rem; font-size: 1.25rem; }
+.lg-btn { min-height: 56px; font-size: 1.3rem; }
+.lg-error {
+  margin: 0;
+  padding: 0.75rem 1rem;
+  font-weight: 700;
+  background: rgba(120, 20, 14, 0.7);
+  border: 2px solid var(--chili);
+  border-radius: 12px;
 }
-.lg-field input:focus-visible { outline: 3px solid var(--chili); outline-offset: 2px; }
-.lg-btn {
-  min-height: 56px; font: inherit; font-size: 1.3rem; font-weight: 800; color: #fff;
-  background: var(--chili); border: 2px solid var(--chili); border-radius: 12px; cursor: pointer;
-}
-.lg-btn:hover:not(:disabled) { background: var(--chili-dark); border-color: var(--chili-dark); }
-.lg-btn:disabled { opacity: 0.6; cursor: not-allowed; }
-.lg-btn:focus-visible { outline: 3px solid var(--fg); outline-offset: 3px; }
-.lg-error { margin: 0; padding: 0.75rem 1rem; font-weight: 700; background: #5b1410; border: 2px solid var(--chili); border-radius: 12px; }
 `;
